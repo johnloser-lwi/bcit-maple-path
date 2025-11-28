@@ -4,7 +4,7 @@ Open terminal and run these commands
 ./setup.sh # for mac
 ./setup.bat # for windows
 ```
-# How to run the Project (You don't need to run this step if you are not updating input.css)
+# How to run the Project
 
 Open terminal and run these commands
 ```bash
