@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link rel="stylesheet" href="css/output.css">
+</head>
+<body class="text-white flex flex-col justify-center items-center bg-dark-grey">
+
+    <div id="header-template"></div>
+
+    <main>
+
+        <section class="flex flex-col gap-5">
+            <div class="flex gap-2 items-center max-md:flex-col">
+                <img src="assets/ProfilePic.png" alt="User Avatar">
+                <div class="flex flex-col gap-3 p-2 w-10/10 max-md:pr-0 max-md:pl-0">
+                    <h2 class="complete-profile">Score</h2> 
+                    <div class="flex flex-row items-center gap-2">
+                        <div class="progress-container">
+                            <div class="progress-fill" style="width: 60%;"></div>
+                        </div>
+                        <p>485/534</p>
+                    </div>
+                </div>
+            </div>
+
+            <article>
+                <p class="w-8/10 max-md:w-10/10">
+                    Your CRS Breakdown Body: You are currently sitting at 485, which is a competitive score for recent STEM draws. With a few improvements to your French language skills, you could reach a potential maximum of 534.
+                </p>
+            </article>
+        </section>
+
+        <div class="flex gap-5 items-start max-md:flex-col">
+            <section class="h-10/10 flex flex-col gap-5 flex-1">
+                <img class="w-10/10 aspect-video" src="assets/Canada.png" alt="Placeholder">
+                <h3>Personal Profile</h3>
+                <ul>
+                    <li><strong>Primary Applicant:</strong> Li Wei</li>
+                    <li><strong>Age:</strong> 29</li>
+                    <li><strong>Marital Status:</strong> Single</li>
+                    <li><strong>Language:</strong> IELTS (CLB9)</li>
+                </ul>
+                <p class="text-light-grey">
+                    Your profile is currently active in the Express Entry pool. Your age bracket is currently maximizing your points, but remember that you will lose 5 points on your next birthday. Ensure all documents are valid and up to date.
+                </p>
+            </section>
+
+            <div class="flex gap-5 flex-col flex-1">
+                <section class="flex flex-col gap-5">
+                    <h3>Education</h3>
+                    <ul>
+                        <li><strong>Credential:</strong> Master's Degree in Computer Science</li>
+                        <li><strong>Institution:</strong> University of British Columbia</li>
+                        <li><strong>ECA Status:</strong> Not Required (Canadian Degree)</li>
+                        <li><strong>Graduation:</strong> May 2021</li>
+                    </ul>
+                    <p class="text-light-grey">
+                        Your Canadian education awards you 30 bonus CRS points. If you have any additional foreign degrees, add them here to potentially increase your "Skill Transferability" factors.
+                    </p>
+                </section>
+
+                <section class="flex flex-col gap-5">
+                    <h3>Work Experience</h3>
+                    <ul>
+                        <li><strong>Primary NOC:</strong> 21231 (Software Engineers)</li>
+                        <li><strong>TEER Category:</strong> 1</li>
+                        <li><strong>Foreign Experience:</strong> 3 Years</li>
+                        <li><strong>Canadian Experience:</strong> 1 Year</li>
+                    </ul>
+                    <p class="text-light-grey">
+                        You are currently claiming points for Skill Transferability (Foreign Work + Language). Ensure your reference letters explicitly match the duties described in the NOC 21231 statement to avoid rejection.
+                    </p>
+                </section>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="footer-template"></div>
+
+    <script src="js/template.js"></script>
+</body>
+</html>
