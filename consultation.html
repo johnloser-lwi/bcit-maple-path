@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaplePath – Consultation</title>
+    <link rel="stylesheet" href="css/output.css">
+</head>
+
+<body class="text-white flex flex-col justify-center items-center bg-dark-grey">
+
+    <div id="header-template"></div>
+
+    <main>
+        <div class="mb-5">
+            <h1 class="mb-3">Pick Your Consultant</h1>
+            <p class="text-light-grey w-8/10 max-md:w-full">
+                Choose a Regulated Canadian Immigration Consultant (RCIC) who fits your situation.
+                Compare their experience, focus areas, and languages, then select a time slot that
+                works for you.
+            </p>
+        </div>
+
+        <section class="selection-summary-card">
+            <h2 class="mb-3">Selected Consultation</h2>
+            <p id="selection-summary" class="text-light-grey">
+                No session picked yet. Click on a time slot in any card to select a consultant.
+            </p>
+        </section>
+
+        <!-- List -->
+        <section class="consultant-list-section">
+            <div class="consultant-list">
+
+                <!-- Consultant 1 -->
+                <article class="consultant-card">
+                    <div class="consultant-left">
+
+                        <h2 class="consultant-name">Anna Malik</h2>
+
+                        <img src="assets/consultation/cons3.webp" alt="Anna Malik" class="consultant-avatar">
+
+                        <p class="consultant-specialty text-light-grey">
+                            Express Entry and Federal Skilled Worker profiles for tech, marketing, and digital professionals.
+                        </p>
+
+                        <ul class="consultant-meta">
+                            <li>10+ years experience with IRCC applications</li>
+                            <li>Background in HR & Canadian labour market</li>
+                            <li>Speaks: English, Russian</li>
+                        </ul>
+                    </div>
+
+                    <div class="time-slot-panel">
+                        <h3 class="time-slot-heading">Time &amp; Date</h3>
+
+                        <div class="time-slot-group">
+                            <button class="time-slot" data-consultant="Anna Malik" data-time="Tue · 2:00–2:45 PM PT">Tue · 2:00–2:45 PM PT</button>
+                            <button class="time-slot" data-consultant="Anna Malik" data-time="Thu · 10:00–10:45 AM PT">Thu · 10:00–10:45 AM PT</button>
+                            <button class="time-slot" data-consultant="Anna Malik" data-time="Sat · 11:30–12:15 PM PT">Sat · 11:30–12:15 PM PT</button>
+                        </div>
+
+                        <p class="time-slot-note">Ideal for first-time Express Entry assessments.</p>
+
+                        <button class="confirm-button">Confirm Booking</button>
+                    </div>
+                </article>
+
+                <!-- Consultant 2 -->
+                <article class="consultant-card">
+                    <div class="consultant-left">
+
+                        <h2 class="consultant-name">Daniel Chen</h2>
+
+                        <img src="assets/consultation/cons1.jpeg" alt="Daniel Chen" class="consultant-avatar">
+
+                        <p class="consultant-specialty text-light-grey">
+                            Canadian Experience Class, PGWP transitions, and work permit strategy for recent graduates.
+                        </p>
+
+                        <ul class="consultant-meta">
+                            <li>Helps students move from study permit to PR</li>
+                            <li>Special focus on IT and design roles</li>
+                            <li>Speaks: English, Mandarin</li>
+                        </ul>
+                    </div>
+
+                    <div class="time-slot-panel">
+                        <h3 class="time-slot-heading">Time &amp; Date</h3>
+
+                        <div class="time-slot-group">
+                            <button class="time-slot" data-consultant="Daniel Chen" data-time="Mon · 4:30–5:15 PM PT">Mon · 4:30–5:15 PM PT</button>
+                            <button class="time-slot" data-consultant="Daniel Chen" data-time="Wed · 9:00–9:45 AM PT">Wed · 9:00–9:45 AM PT</button>
+                            <button class="time-slot" data-consultant="Daniel Chen" data-time="Fri · 1:00–1:45 PM PT">Fri · 1:00–1:45 PM PT</button>
+                        </div>
+
+                        <p class="time-slot-note">Best for students and young professionals on PGWP.</p>
+
+                        <button class="confirm-button">Confirm Booking</button>
+                    </div>
+                </article>
+
+                <!-- Consultant 3 -->
+                <article class="consultant-card">
+                    <div class="consultant-left">
+
+                        <h2 class="consultant-name">Sofía Rivera</h2>
+
+                        <img src="assets/consultation/cons4.jpg" alt="Sofía Rivera" class="consultant-avatar">
+
+                        <p class="consultant-specialty text-light-grey">
+                            Provincial Nominee Programs and family sponsorship pathways across Canada.
+                        </p>
+
+                        <ul class="consultant-meta">
+                            <li>Experience with multiple PNP streams</li>
+                            <li>Helps couples & families plan long-term PR strategy</li>
+                            <li>Speaks: English, Spanish</li>
+                        </ul>
+                    </div>
+
+                    <div class="time-slot-panel">
+                        <h3 class="time-slot-heading">Time &amp; Date</h3>
+
+                        <div class="time-slot-group">
+                            <button class="time-slot" data-consultant="Sofía Rivera" data-time="Tue · 6:00–6:45 PM PT">Tue · 6:00–6:45 PM PT</button>
+                            <button class="time-slot" data-consultant="Sofía Rivera" data-time="Thu · 3:00–3:45 PM PT">Thu · 3:00–3:45 PM PT</button>
+                            <button class="time-slot" data-consultant="Sofía Rivera" data-time="Sat · 9:30–10:15 AM PT">Sat · 9:30–10:15 AM PT</button>
+                        </div>
+
+                        <p class="time-slot-note">Ideal if you’re exploring PNP options or sponsoring family.</p>
+
+                        <button class="confirm-button">Confirm Booking</button>
+                    </div>
+                </article>
+
+                <!-- Consultant 4 -->
+                <article class="consultant-card">
+                    <div class="consultant-left">
+
+                        <h2 class="consultant-name">Omar Hassan</h2>
+
+                        <img src="assets/consultation/cons2.jpg" alt="Omar Hassan" class="consultant-avatar">
+
+                        <p class="consultant-specialty text-light-grey">
+                            Complex files, refusals, and strategy tune-ups for applicants who already submitted once.
+                        </p>
+
+                        <ul class="consultant-meta">
+                            <li>Specializes in refusal reviews and reconsideration</li>
+                            <li>Reviews documentation & red flags in detail</li>
+                            <li>Speaks: English, Arabic</li>
+                        </ul>
+                    </div>
+
+                    <div class="time-slot-panel">
+                        <h3 class="time-slot-heading">Time &amp; Date</h3>
+
+                        <div class="time-slot-group">
+                            <button class="time-slot" data-consultant="Omar Hassan" data-time="Mon · 11:00–11:45 AM PT">Mon · 11:00–11:45 AM PT</button>
+                            <button class="time-slot" data-consultant="Omar Hassan" data-time="Wed · 5:30–6:15 PM PT">Wed · 5:30–6:15 PM PT</button>
+                            <button class="time-slot" data-consultant="Omar Hassan" data-time="Fri · 9:00–9:45 AM PT">Fri · 9:00–9:45 AM PT</button>
+                        </div>
+
+                        <p class="time-slot-note">Recommended if you’ve had a refusal or complex history.</p>
+
+                        <button class="confirm-button">Confirm Booking</button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-template"></div>
+
+    <script src="js/template.js"></script>
+    <script src="js/consultation.js"></script>
+</body>
+</html>
