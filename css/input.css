@@ -185,3 +185,217 @@ a {
 .confirm-button:hover {
     @apply opacity-80;
 }
+
+/* ========================================
+   BLOG PAGE STYLES
+   ======================================== */
+
+.blog-main {
+    max-width: 1200px;
+    width: 100%;
+    @apply min-w-0 mt-5;
+}
+
+.blog-layout {
+    @apply flex gap-6 px-6 md:px-8;
+}
+
+/* Filter Sidebar */
+.filter-sidebar {
+    @apply w-80 flex-shrink-0 max-md:hidden;
+}
+
+.filter-panel {
+    @apply bg-dark rounded-xl p-5;
+}
+
+.filter-header {
+    @apply flex justify-between items-center mb-4 pb-3 border-b border-dark-grey;
+}
+
+.filter-title {
+    @apply text-lg font-medium m-0;
+}
+
+.filter-icon {
+    @apply text-light-grey;
+}
+
+.filter-section {
+    @apply border-b border-dark-grey py-3;
+}
+
+.filter-section:last-of-type {
+    @apply border-b-0;
+}
+
+.filter-toggle {
+    @apply w-full flex justify-between items-center bg-transparent text-white text-left cursor-pointer p-0 border-0;
+}
+
+.filter-toggle span {
+    @apply text-light-grey;
+}
+
+.filter-toggle .chevron {
+    @apply text-light-grey transition-transform duration-200;
+}
+
+.filter-toggle .chevron.rotated {
+    transform: rotate(90deg);
+}
+
+.filter-options {
+    @apply mt-3 flex flex-col gap-2;
+}
+
+.filter-options.hidden {
+    @apply hidden;
+}
+
+.filter-option {
+    @apply flex items-center gap-2 text-light-grey text-sm cursor-pointer;
+}
+
+.filter-option input[type="checkbox"] {
+    @apply w-4 h-4 accent-accent;
+}
+
+/* Time Chips */
+.time-chips {
+    @apply flex flex-wrap gap-2;
+}
+
+.time-chip {
+    @apply px-3 py-2 rounded-md border border-dark-grey bg-transparent text-white text-sm cursor-pointer transition-all;
+}
+
+.time-chip:hover {
+    @apply border-light-grey;
+}
+
+.time-chip.selected {
+    @apply bg-accent border-accent text-white;
+}
+
+/* Apply Filter Button */
+.apply-filter-btn {
+    @apply w-full mt-5 py-3 rounded-md bg-accent text-white font-medium cursor-pointer transition-opacity border-0;
+}
+
+.apply-filter-btn:hover {
+    @apply opacity-80;
+}
+
+/* Articles Container */
+.articles-container {
+    @apply flex-1 min-w-0;
+}
+
+/* Search Bar */
+.search-bar {
+    @apply flex items-center gap-3 bg-dark rounded-lg px-4 py-3 mb-5;
+}
+
+.search-icon {
+    @apply text-light-grey flex-shrink-0;
+}
+
+.search-bar input {
+    @apply flex-1 bg-transparent border-0 text-white text-base outline-none;
+}
+
+.search-bar input::placeholder {
+    @apply text-light-grey;
+}
+
+/* Articles List */
+.articles-list {
+    @apply flex flex-col gap-5;
+}
+
+/* Article Card */
+.article-card {
+    @apply bg-dark rounded-xl overflow-hidden text-white no-underline block;
+}
+
+.article-card:hover {
+    @apply text-white;
+}
+
+.article-image-wrapper {
+    @apply w-full;
+}
+
+.article-image {
+    @apply w-full h-64 bg-cover bg-center relative;
+}
+
+.article-image-overlay {
+    @apply absolute bottom-0 left-0 right-0 p-4 flex justify-between items-end;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.article-badge {
+    @apply w-10 h-10 rounded-full bg-dark-grey p-2;
+}
+
+.article-location-date {
+    @apply text-sm text-light-grey;
+}
+
+.article-content {
+    @apply p-5 flex flex-col gap-3;
+}
+
+.article-title {
+    @apply text-xl font-semibold m-0;
+}
+
+.article-description {
+    @apply text-light-grey text-sm m-0 leading-relaxed;
+}
+
+.read-more-btn {
+    @apply inline-flex items-center gap-2 bg-dark-grey text-light-grey px-5 py-2 rounded-md border-0 cursor-pointer transition-colors w-fit;
+}
+
+.read-more-btn:hover {
+    @apply bg-accent text-white;
+}
+
+.read-more-btn .arrow {
+    @apply text-accent;
+}
+
+.read-more-btn:hover .arrow {
+    @apply text-white;
+}
+
+/* No Results */
+.no-results {
+    @apply bg-dark rounded-xl p-10 text-center text-light-grey;
+}
+
+.no-results.hidden {
+    @apply hidden;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .blog-layout {
+        @apply flex-col;
+    }
+
+    .filter-sidebar {
+        @apply w-full hidden;
+    }
+
+    .articles-container {
+        @apply w-full;
+    }
+
+    .article-image {
+        @apply h-48;
+    }
+}
