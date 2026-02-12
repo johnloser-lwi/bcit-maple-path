@@ -381,6 +381,19 @@ a {
     @apply hidden;
 }
 
+/* Suggestions Message */
+.suggestions-message {
+    @apply bg-dark rounded-xl p-6 mb-6 text-center border-2 border-accent;
+}
+
+.suggestions-message p {
+    @apply text-light-grey font-medium;
+}
+
+.suggestions-message.hidden {
+    @apply hidden;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .blog-layout {

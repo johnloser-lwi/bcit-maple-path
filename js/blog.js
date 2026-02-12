@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('search-input');
   const articlesList = document.getElementById('articles-list');
   const noResults = document.getElementById('no-results');
+  const suggestionsMessage = document.getElementById('suggestions-message');
   const applyFilterBtn = document.getElementById('apply-filters');
   const filterToggles = document.querySelectorAll('.filter-toggle');
   const timeChips = document.querySelectorAll('.time-chip');
@@ -160,7 +161,8 @@ document.addEventListener('DOMContentLoaded', function() {
    */
   function applyFilters() {
     const articles = articlesList.querySelectorAll('.article-card');
-    let visibleCount = 0;
+    let exactMatchCount = 0;
+    let suggestionMatchCount = 0;
 
     // Get selected checkbox filters
     const selectedTypes = getSelectedCheckboxValues('filter-type');
@@ -171,66 +173,112 @@ document.addEventListener('DOMContentLoaded', function() {
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - selectedTimeFilter);
 
+    // Check if any filters are active
+    const hasActiveFilters = searchQuery || selectedTypes.length > 0 ||
+                             selectedSources.length > 0 || selectedRegions.length > 0;
+
+    // First pass: Check for exact matches
     articles.forEach(article => {
-      let isVisible = true;
+      const matchResult = checkArticleMatch(article, searchQuery, selectedTypes,
+                                           selectedSources, selectedRegions, cutoffDate);
 
-      // Check search query
-      if (searchQuery) {
-        const title = article.querySelector('.article-title').textContent.toLowerCase();
-        const description = article.querySelector('.article-description').textContent.toLowerCase();
-        if (!title.includes(searchQuery) && !description.includes(searchQuery)) {
-          isVisible = false;
-        }
-      }
-
-      // Check type filter
-      if (isVisible && selectedTypes.length > 0) {
-        const articleType = article.dataset.type;
-        if (!selectedTypes.includes(articleType)) {
-          isVisible = false;
-        }
-      }
-
-      // Check source filter
-      if (isVisible && selectedSources.length > 0) {
-        const articleSource = article.dataset.source;
-        if (!selectedSources.includes(articleSource)) {
-          isVisible = false;
-        }
-      }
-
-      // Check region filter
-      if (isVisible && selectedRegions.length > 0) {
-        const articleRegion = article.dataset.region;
-        if (!selectedRegions.includes(articleRegion)) {
-          isVisible = false;
-        }
-      }
-
-      // Check time filter
-      if (isVisible) {
-        const articleDateStr = article.dataset.date;
-        const articleDate = new Date(articleDateStr);
-        if (articleDate < cutoffDate) {
-          isVisible = false;
-        }
-      }
-
-      // Show/hide article
-      if (isVisible) {
+      if (matchResult.exactMatch) {
         article.style.display = 'block';
-        visibleCount++;
+        article.classList.remove('suggestion-article');
+        exactMatchCount++;
       } else {
         article.style.display = 'none';
+        article.classList.remove('suggestion-article');
       }
     });
 
-    // Show/hide no results message
-    if (visibleCount === 0) {
-      noResults.classList.remove('hidden');
-    } else {
-      noResults.classList.add('hidden');
+    // Second pass: If no exact matches and filters are active, show suggestions (max 3)
+    if (exactMatchCount === 0 && hasActiveFilters) {
+      const MAX_SUGGESTIONS = 3;
+
+      // Try to find partial matches first
+      articles.forEach(article => {
+        const matchResult = checkArticleMatch(article, searchQuery, selectedTypes,
+                                             selectedSources, selectedRegions, cutoffDate);
+
+        if (matchResult.partialMatch && suggestionMatchCount < MAX_SUGGESTIONS) {
+          article.style.display = 'block';
+          article.classList.add('suggestion-article');
+          suggestionMatchCount++;
+        }
+      });
+
+      // If still no suggestions, show the most recent articles within time filter
+      if (suggestionMatchCount === 0) {
+        articles.forEach(article => {
+          const articleDateStr = article.dataset.date;
+          const articleDate = new Date(articleDateStr);
+
+          if (articleDate >= cutoffDate && suggestionMatchCount < MAX_SUGGESTIONS) {
+            article.style.display = 'block';
+            article.classList.add('suggestion-article');
+            suggestionMatchCount++;
+          }
+        });
+      }
     }
+
+    // Update UI messages
+    if (exactMatchCount > 0) {
+      // Exact matches found
+      noResults.classList.add('hidden');
+      suggestionsMessage.classList.add('hidden');
+    } else if (suggestionMatchCount > 0) {
+      // No exact matches, but suggestions found
+      noResults.classList.add('hidden');
+      suggestionsMessage.classList.remove('hidden');
+    } else {
+      // No matches or suggestions
+      noResults.classList.remove('hidden');
+      suggestionsMessage.classList.add('hidden');
+    }
+  }
+
+  /**
+   * Check if an article matches the search criteria
+   * Returns an object with exactMatch and partialMatch flags
+   */
+  function checkArticleMatch(article, searchQuery, selectedTypes, selectedSources, selectedRegions, cutoffDate) {
+    const title = article.querySelector('.article-title').textContent.toLowerCase();
+    const description = article.querySelector('.article-description').textContent.toLowerCase();
+    const articleType = article.dataset.type;
+    const articleSource = article.dataset.source;
+    const articleRegion = article.dataset.region;
+    const articleDateStr = article.dataset.date;
+    const articleDate = new Date(articleDateStr);
+
+    // Check time filter (always apply, even for suggestions)
+    const passesTimeFilter = articleDate >= cutoffDate;
+
+    if (!passesTimeFilter) {
+      return { exactMatch: false, partialMatch: false };
+    }
+
+    // Check search query match
+    const matchesSearch = !searchQuery ||
+                         title.includes(searchQuery) ||
+                         description.includes(searchQuery);
+
+    // Check filter matches
+    const matchesType = selectedTypes.length === 0 || selectedTypes.includes(articleType);
+    const matchesSource = selectedSources.length === 0 || selectedSources.includes(articleSource);
+    const matchesRegion = selectedRegions.length === 0 || selectedRegions.includes(articleRegion);
+
+    // Exact match: passes all criteria
+    const exactMatch = matchesSearch && matchesType && matchesSource && matchesRegion;
+
+    // Partial match: matches at least the search query OR one of the filters
+    // (for suggestions when there are no exact matches)
+    const hasAnyFilter = selectedTypes.length > 0 || selectedSources.length > 0 || selectedRegions.length > 0;
+    const partialMatch = (searchQuery && matchesSearch) ||
+                        (hasAnyFilter && (matchesType || matchesSource || matchesRegion));
+
+    return { exactMatch, partialMatch };
   }
 
   /**
